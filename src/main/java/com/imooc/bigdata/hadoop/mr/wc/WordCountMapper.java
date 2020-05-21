@@ -33,7 +33,7 @@ public class WordCountMapper extends Mapper<LongWritable, Text,Text, IntWritable
         String[] words = value.toString().split("\t");
 
         for(String word :words){
-            context.write(new Text(word),new IntWritable(1));
+            context.write(new Text(word.toLowerCase()),new IntWritable(1));
         }
     }
 }
