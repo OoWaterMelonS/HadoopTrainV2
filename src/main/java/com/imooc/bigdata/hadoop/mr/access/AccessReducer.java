@@ -1,5 +1,6 @@
 package com.imooc.bigdata.hadoop.mr.access;
 
+import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
@@ -10,7 +11,7 @@ import java.io.IOException;
  * @5/22/2020 8:45 AM
  * description：
  */
-public class AccessReducer extends  Reducer<Text,Access,Text,Access>{
+public class AccessReducer extends  Reducer<Text,Access, NullWritable,Access>{
     /**
      * @param key 手机号
      * @param values <Access,Access>
@@ -27,6 +28,6 @@ public class AccessReducer extends  Reducer<Text,Access,Text,Access>{
         }
 
 
-        context.write(key, new Access(key.toString(), ups, downs));
+        context.write(NullWritable.get(), new Access(key.toString(), ups, downs));
     }
 }
