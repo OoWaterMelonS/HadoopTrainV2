@@ -31,6 +31,11 @@ public class AccessLocalApp {
         // 需要使用的时候再去操作
 //        job.setCombinerClass(AccessReducer.class);
 
+        // 使用自定义分区
+        job.setPartitionerClass(AccessPartitioner.class);
+        // 设定reduce个数
+        job.setNumReduceTasks(3);
+
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(Access.class);
 
