@@ -10,20 +10,19 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
  * @author EaApple
  * @5/22/2020 9:04 AM
- * description：
+ * description：com.imooc.bigdata.hadoop.mr.access.AccessYarnApp
  */
-public class AccessLocalApp {
+public class AccessYarnApp {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         Configuration configuration = new Configuration();
 
         Job job = Job.getInstance(configuration);
-        job.setJarByClass(AccessLocalApp.class);
+        job.setJarByClass(AccessYarnApp.class);
 
         job.setMapperClass(AccessMapper.class);
         job.setReducerClass(AccessReducer.class);
@@ -48,8 +47,10 @@ public class AccessLocalApp {
             fileSystem.delete(outPutPath,true);
         }
 
-        FileInputFormat.setInputPaths(job,new Path("access/input"));
-        FileOutputFormat.setOutputPath(job,new Path("access/output"));
+        FileInputFormat.setInputPaths(job,new Path(args[0]));
+        FileOutputFormat.setOutputPath(job,new Path(args[1]));
+//        FileInputFormat.setInputPaths(job,new Path("access/input"));
+//        FileOutputFormat.setOutputPath(job,new Path("access/output"));
 
         boolean result = job.waitForCompletion(true);
 
