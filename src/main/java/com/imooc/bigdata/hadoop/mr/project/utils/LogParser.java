@@ -13,11 +13,13 @@ import java.util.Map;
 public class LogParser {
 
     public Map<String,String> parse(String log){
+        // 一次对一行日志进行划分
         IPParser ipParser = IPParser.getInstance();
         Map<String,String> info = new HashedMap();
         if(StringUtils.isNotBlank(log)){
+            // 按照指定的分割符进行划分
             String[] splits = log.split("\001");
-
+            // 取出第13个元素
             String ip = splits[13];
             String country="-";
             String province="-";
@@ -33,6 +35,9 @@ public class LogParser {
             info.put("country",country);
             info.put("province",province);
             info.put("city",city);
+
+            String url = splits[1];
+            info.put("url",url);
 
         }
         return info;
