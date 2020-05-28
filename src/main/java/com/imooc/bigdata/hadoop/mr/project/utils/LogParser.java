@@ -28,18 +28,13 @@ public class LogParser {
                 country = regionInfo.getCountry();
                 province = regionInfo.getProvince();
                 city = regionInfo.getCity();
-
-
             }
             info.put("ip",ip);
             info.put("country",country);
             info.put("province",province);
             info.put("city",city);
 
-
         }
-
         return info;
-
     }
 }
