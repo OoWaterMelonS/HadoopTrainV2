@@ -38,5 +38,4 @@ public class LogParseTest {
         System.out.println(pageId);
     }
 
-
 }
