@@ -43,14 +43,14 @@ public class ProvinceStatV2App {
 
         //如果输出文件位置存在文件了  就先删除掉
         FileSystem fileSystem = FileSystem.get(configuration);
-        Path outPutPath = new Path("output/v2/provincestat");
+        Path outPutPath = new Path(args[1]);
         if(fileSystem.exists(outPutPath)){
             fileSystem.delete(outPutPath,true);
         }
 
         //设定输入和输出文件位置
-        FileInputFormat.setInputPaths(job,new Path("input/etl/part-r-00000"));
-        FileOutputFormat.setOutputPath(job,new Path("output/v2/provincestat"));
+        FileInputFormat.setInputPaths(job,new Path(args[0]));
+        FileOutputFormat.setOutputPath(job,new Path(args[1]));
 
         job.waitForCompletion(true);
     }
