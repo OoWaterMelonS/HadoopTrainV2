@@ -13,17 +13,20 @@ import java.util.regex.Pattern;
  */
 public class ContentUtils {
 
-    public static String getPageId(String url){
+    public static String getPageId(String url) {
         String pageId = "";
-        if(StringUtils.isNotBlank(url)){
-            // 模式匹配代码  重要复习
-            Pattern pattern = Pattern.compile("topicId=[0-9]+");
-            Matcher matcher = pattern.matcher(url);
-
-            if(matcher.find()){
-                pageId = matcher.group().split("topicId=")[1];
-            }
+        if (StringUtils.isBlank(url)) {
+            return pageId;
         }
+        Pattern pat = Pattern.compile("topicId=[0-9]+");
+        Matcher matcher = pat.matcher(url);
+
+        if (matcher.find()) {
+            pageId = matcher.group().split("topicId=")[1];
+        }else {
+            pageId = "-500";
+        }
+
         return pageId;
     }
 }
