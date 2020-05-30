@@ -39,6 +39,9 @@ public class LogParser {
             String url = splits[1];
             info.put("url",url);
 
+            String time = splits[17];
+            info.put("time",time);
+
         }
         return info;
     }
